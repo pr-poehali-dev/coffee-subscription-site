@@ -161,7 +161,12 @@ export default function Index() {
               <Icon name="Coffee" size={20} className="mr-2" />
               Начать дегустацию
             </Button>
-            <Button variant="outline" size="lg" className="px-8 py-6 text-lg">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-8 py-6 text-lg"
+              onClick={() => window.location.href = '/recipes'}
+            >
               <Icon name="Book" size={20} className="mr-2" />
               Изучить рецепты
             </Button>
