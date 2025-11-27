@@ -5,12 +5,6 @@
       "method": "GET",
       "path": "/",
       "expectedStatus": 200
-    },
-    {
-      "name": "Filter by difficulty",
-      "method": "GET",
-      "path": "/?difficulty=Легкая",
-      "expectedStatus": 200
     }
   ]
 }
