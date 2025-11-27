@@ -1,8 +1,8 @@
 '''
-Business: Get coffee recipes from database
+Business: Get coffee recipes from PostgreSQL database
 Args: event - dict with httpMethod, queryStringParameters
       context - object with attributes: request_id, function_name
-Returns: HTTP response with coffee recipes JSON
+Returns: HTTP response with coffee recipes JSON array
 '''
 import json
 import os
@@ -22,7 +22,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400'
             },
-            'body': ''
+            'body': '',
+            'isBase64Encoded': False
         }
     
     if method != 'GET':
@@ -32,7 +33,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'Method not allowed'})
+            'body': json.dumps({'error': 'Method not allowed'}),
+            'isBase64Encoded': False
         }
     
     database_url: str = os.environ.get('DATABASE_URL', '')
@@ -43,7 +45,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'Database configuration error'})
+            'body': json.dumps({'error': 'Database configuration missing'}),
+            'isBase64Encoded': False
         }
     
     conn = None
@@ -55,13 +58,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         difficulty: Optional[str] = params.get('difficulty')
         
         if difficulty:
+            safe_difficulty = difficulty.replace("'", "''")
             query = f"""
                 SELECT id, name, description, ingredients, brewing_method, 
                        coffee_amount_g, water_amount_ml, brewing_time_minutes, 
                        temperature_celsius, difficulty_level, image_url, 
                        created_at, updated_at
                 FROM coffee_recipes 
-                WHERE difficulty_level = '{difficulty.replace("'", "''")}'
+                WHERE difficulty_level = '{safe_difficulty}'
                 ORDER BY name
             """
             cursor.execute(query)
@@ -93,8 +97,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'isBase64Encoded': False,
-            'body': json.dumps({'recipes': recipes})
+            'body': json.dumps({'recipes': recipes, 'count': len(recipes)}),
+            'isBase64Encoded': False
         }
     
     finally:
