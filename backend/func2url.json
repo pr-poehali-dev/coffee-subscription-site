@@ -1,4 +1,5 @@
 {
+  "add-recipe": "https://functions.poehali.dev/a8bd86c1-37af-4196-82a6-a252a47fbbff",
   "get-recipes": "https://functions.poehali.dev/fa671cab-2286-4c34-b05a-9d748b2eb27a",
   "recipes": "https://functions.poehali.dev/cac771f2-a1ac-4d22-b61a-48ba63f2766a"
 }

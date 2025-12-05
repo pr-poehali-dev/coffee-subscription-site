@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Add new recipe",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тестовый эспрессо",
+        "description": "Классический крепкий кофе",
+        "ingredients": "Кофе зерновой арабика",
+        "brewing_method": "Эспрессо-машина",
+        "coffee_amount_g": 18,
+        "water_amount_ml": 36,
+        "brewing_time_minutes": 1,
+        "temperature_celsius": 93,
+        "difficulty_level": "средний"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "recipe_id": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
