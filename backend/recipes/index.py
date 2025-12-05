@@ -1,8 +1,5 @@
 '''
-Business: Get coffee recipes from PostgreSQL database
-Args: event - dict with httpMethod, queryStringParameters
-      context - object with attributes: request_id, function_name
-Returns: HTTP response with coffee recipes JSON array
+Получить список кофейных рецептов с фильтрацией
 '''
 import json
 import os
