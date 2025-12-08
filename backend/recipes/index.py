@@ -92,9 +92,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'X-API-Version': '1.0.0'
             },
-            'body': json.dumps({'recipes': recipes, 'count': len(recipes)}),
+            'body': json.dumps({
+                'recipes': recipes, 
+                'count': len(recipes),
+                'version': '1.0.0'
+            }),
             'isBase64Encoded': False
         }
     
