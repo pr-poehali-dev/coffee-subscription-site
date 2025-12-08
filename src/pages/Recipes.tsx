@@ -21,8 +21,8 @@ interface Recipe {
 
 const fetchRecipes = async (difficulty?: string): Promise<Recipe[]> => {
   const url = difficulty 
-    ? `https://functions.poehali.dev/8b4772dc-5501-4743-9933-d201b68115f8?difficulty=${encodeURIComponent(difficulty)}`
-    : 'https://functions.poehali.dev/8b4772dc-5501-4743-9933-d201b68115f8'
+    ? `https://functions.poehali.dev/cac771f2-a1ac-4d22-b61a-48ba63f2766a?difficulty=${encodeURIComponent(difficulty)}`
+    : 'https://functions.poehali.dev/cac771f2-a1ac-4d22-b61a-48ba63f2766a'
   
   const response = await fetch(url)
   if (!response.ok) {
