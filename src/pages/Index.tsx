@@ -139,7 +139,7 @@ export default function Index() {
       <section className="relative px-4 py-20 text-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img 
-            src="/img/36f41e11-f136-4b71-9ba5-d26d3c686575.jpg" 
+            src="https://cdn.poehali.dev/projects/3c6f4263-eaa7-4a97-9cf9-401643a4f119/bucket/coffee_again.jpg" 
             alt="" 
             className="w-full h-full object-cover"
           />
